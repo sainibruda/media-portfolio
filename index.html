@@ -489,10 +489,12 @@
 
         .modal-content {
             max-width: 900px;
+            max-height: calc(100vh - 4rem);
             width: 100%;
             background: var(--bg-card);
             border-radius: 8px;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
             border: 1px solid var(--border-color);
             position: relative;
         }
@@ -520,6 +522,26 @@
         }
 
         .signature-modal .modal-specs {
+            max-width: 460px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .batch-modal .modal-body {
+            display: block;
+        }
+
+        .batch-modal .modal-img-container {
+            max-height: none;
+            overflow: visible;
+        }
+
+        .batch-modal .modal-info {
+            padding: 1.5rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .batch-modal .modal-specs {
             max-width: 460px;
             margin: 0 auto;
             text-align: center;
@@ -643,6 +665,38 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+        }
+
+        .batch-showcase {
+            display: none;
+            padding: 1rem;
+        }
+
+        .batch-slider .comparison-stage {
+            height: min(500px, 56vh);
+            min-height: 280px;
+        }
+
+        .batch-grid {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 0.45rem;
+            margin-top: 1rem;
+        }
+
+        .batch-grid img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border: 1px solid var(--border-color);
+            object-fit: cover;
+        }
+
+        .batch-grid-label {
+            margin-top: 0.8rem;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-align: center;
         }
 
         .video-carousel {
@@ -807,6 +861,8 @@
             .comparison-stage { height: min(440px, 55vh); min-height: 260px; }
             .video-carousel { padding: 0.65rem; }
             .video-stage { min-height: 0; }
+            .batch-showcase { padding: 0.65rem; }
+            .batch-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
         }
     </style>
 </head>
@@ -891,14 +947,14 @@
             </div>
 
             <!-- Card 3 (Moving Postcards) -->
-            <div class="portfolio-card" data-category="moving" onclick="openModal('Moving Postcards', 'A short atmospheric video snippet series engineered for peaceful visual storytelling.', 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80', 'DaVinci', 'Short Form')">
+            <div class="portfolio-card" data-category="moving" onclick="openMovingPostcards()">
                 <div class="card-img-wrapper">
                     <span class="card-badge">Moving Postcard</span>
-                    <img class="card-img" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Moving Postcard Nature">
+                    <img class="card-img" src="https://img.youtube.com/vi/dS2S3Dygbcs/hqdefault.jpg" alt="Moving Postcards video preview">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">Moving Postcards</h3>
-                    <p class="card-desc">Atmospheric short-form video clip optimized for vertical social media feeds.</p>
+                    <p class="card-desc">Atmospheric short-form video clip crafted for adaptable visual storytelling.</p>
                     <div class="card-meta">
                         <span>Short-Form Video</span>
                         <span>Davinci Resolve Studio</span>
@@ -907,10 +963,10 @@
             </div>
 
             <!-- Card 4 (Batch Retouching) -->
-            <div class="portfolio-card" data-category="retouching" onclick="openModal('Batch Image Processing', 'Batch exposure correction, chromatic aberration removal, and uniform tone matching for high volume sets.', 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80', 'Lightroom / Photoshop CC', 'Batch Retouch')">
+            <div class="portfolio-card" data-category="retouching" onclick="openBatchModal()">
                 <div class="card-img-wrapper">
                     <span class="card-badge">Batch Edit</span>
-                    <img class="card-img" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Batch Image Edit">
+                    <img class="card-img" src="assets/batch-processing/edited-1.jpg" alt="Batch Image Processing edited photo preview">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">High-Volume Batch Processing</h3>
@@ -1026,7 +1082,7 @@
     </section>
 
     <!-- Lightbox Modal -->
-    <div class="modal" id="portfolioModal">
+    <div class="modal" id="portfolioModal" onclick="closeModalOnBackdrop(event)">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal()">&times;</span>
             <div class="modal-body">
@@ -1057,6 +1113,21 @@
                                 <button class="comparison-button" type="button" onclick="changeComparison(1)" aria-label="Next photo">&#8594;</button>
                             </div>
                         </div>
+                    </div>
+                    <div class="batch-showcase" id="batchShowcase">
+                        <div class="batch-slider">
+                            <div class="comparison-stage">
+                                <img id="batchRawImg" class="comparison-image" src="" alt="Raw batch-processing example">
+                                <div class="edited-image-clip" id="batchEditedClip">
+                                    <img id="batchEditedImg" class="comparison-image" src="" alt="Edited batch-processing example">
+                                </div>
+                                <span class="comparison-label raw-label">Raw</span>
+                                <span class="comparison-label edited-label">Edited</span>
+                                <input class="comparison-range" id="batchRange" type="range" min="0" max="100" value="50" aria-label="Compare raw and edited batch-processing images" oninput="updateBatchSlider(this.value)">
+                            </div>
+                        </div>
+                        <div class="batch-grid" id="batchGrid"></div>
+                        <p class="batch-grid-label">A selection from 1,254 photos processed in one consistent batch workflow.</p>
                     </div>
                 </div>
                 <div class="modal-info">
@@ -1090,10 +1161,12 @@
 
         function openModal(title, text, mediaSrc, specs, location) {
             document.querySelector('.modal-content').classList.remove('signature-modal', 'video-modal');
+            document.querySelector('.modal-content').classList.remove('batch-modal');
             document.getElementById('modalImg').style.display = 'block';
             document.getElementById('comparisonView').style.display = 'none';
             document.getElementById('comparisonControls').style.display = 'none';
             document.getElementById('videoCarousel').style.display = 'none';
+            document.getElementById('batchShowcase').style.display = 'none';
             document.getElementById('videoFrame').src = '';
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalText').innerText = text;
@@ -1101,6 +1174,7 @@
             document.getElementById('modalSpecs').innerText = specs;
             document.getElementById('modalLocation').innerText = location;
             document.getElementById('portfolioModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         let comparisonIndex = 0;
@@ -1117,8 +1191,10 @@
             document.getElementById('comparisonControls').style.display = 'flex';
             document.getElementById('videoCarousel').style.display = 'none';
             document.getElementById('videoFrame').src = '';
+            document.getElementById('batchShowcase').style.display = 'none';
             document.getElementById('comparisonRange').value = 50;
             document.getElementById('portfolioModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
             updateComparisonSlide();
         }
 
@@ -1127,10 +1203,23 @@
             'LDPFGhZyfHg',
             'ylzYo8rFleQ'
         ];
+        const movingPostcards = [
+            'dS2S3Dygbcs',
+            'obxseLUPtBo',
+            'dbtMn1__k2M',
+            'oSqZIc-Ktx0',
+            'aFqJrlds4SQ',
+            'e2F0NgAwcfo',
+            'cmcCGEfegCg',
+            'AyLbxeFZTRE',
+            '_44czG9uLWI'
+        ];
         let videoIndex = 0;
+        let activeVideoCollection = cinematicVideos;
 
         function openVideoModal() {
             videoIndex = 0;
+            activeVideoCollection = cinematicVideos;
             document.querySelector('.modal-content').classList.add('video-modal');
             document.getElementById('modalTitle').innerText = 'Cinematic Sequence Edit';
             document.getElementById('modalText').innerText = 'Selected video projects shaped through precise editing, sound design, pacing, and professional color grading.';
@@ -1139,19 +1228,68 @@
             document.getElementById('modalImg').style.display = 'none';
             document.getElementById('comparisonView').style.display = 'none';
             document.getElementById('comparisonControls').style.display = 'none';
+            document.getElementById('batchShowcase').style.display = 'none';
             document.getElementById('videoCarousel').style.display = 'block';
             document.getElementById('portfolioModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            updateVideoSlide();
+        }
+
+        function openBatchModal() {
+            document.querySelector('.modal-content').classList.remove('signature-modal', 'video-modal');
+            document.querySelector('.modal-content').classList.add('batch-modal');
+            document.getElementById('modalTitle').innerText = 'High-Volume Batch Processing';
+            document.getElementById('modalText').innerText = 'A consistent editing workflow applied across 1,254 photos, with matched exposure, color, and visual tone throughout the collection.';
+            document.getElementById('modalSpecs').innerText = 'Lightroom / Photoshop CC';
+            document.getElementById('modalLocation').innerText = '1,254 Photos Processed';
+            document.getElementById('modalImg').style.display = 'none';
+            document.getElementById('comparisonView').style.display = 'none';
+            document.getElementById('comparisonControls').style.display = 'none';
+            document.getElementById('videoCarousel').style.display = 'none';
+            document.getElementById('videoFrame').src = '';
+            document.getElementById('batchShowcase').style.display = 'block';
+            document.getElementById('portfolioModal').classList.add('active');
+            document.getElementById('batchRange').value = 50;
+            document.getElementById('batchRawImg').src = 'assets/batch-processing/raw-1.jpg';
+            document.getElementById('batchEditedImg').src = 'assets/batch-processing/edited-1.jpg';
+            document.getElementById('batchGrid').innerHTML = Array.from({ length: 14 }, (_, index) => `<img src="assets/batch-processing/batch%20edited-${index + 1}.jpg" alt="Edited batch photo ${index + 1}">`).join('');
+            document.body.style.overflow = 'hidden';
+            updateBatchSlider(50);
+        }
+
+        function updateBatchSlider(value) {
+            const stage = document.querySelector('.batch-slider .comparison-stage');
+            const editedImageClip = document.getElementById('batchEditedClip');
+            editedImageClip.style.width = `${value}%`;
+            document.getElementById('batchEditedImg').style.width = `${stage.clientWidth}px`;
+        }
+
+        function openMovingPostcards() {
+            videoIndex = 0;
+            activeVideoCollection = movingPostcards;
+            document.querySelector('.modal-content').classList.add('video-modal');
+            document.getElementById('modalTitle').innerText = 'Moving Postcards';
+            document.getElementById('modalText').innerText = 'Short-form visual postcards shaped through rhythm, atmosphere, and adaptable storytelling.';
+            document.getElementById('modalSpecs').innerText = 'DaVinci Resolve Studio';
+            document.getElementById('modalLocation').innerText = 'Moving Image Portfolio';
+            document.getElementById('modalImg').style.display = 'none';
+            document.getElementById('comparisonView').style.display = 'none';
+            document.getElementById('comparisonControls').style.display = 'none';
+            document.getElementById('videoCarousel').style.display = 'block';
+            document.getElementById('portfolioModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
             updateVideoSlide();
         }
 
         function updateVideoSlide() {
             const slideNumber = videoIndex + 1;
-            document.getElementById('videoFrame').src = `https://www.youtube-nocookie.com/embed/${cinematicVideos[videoIndex]}?rel=0&modestbranding=1`;
-            document.getElementById('videoCount').innerText = `${slideNumber} / ${cinematicVideos.length}`;
+            const videoId = activeVideoCollection[videoIndex];
+            document.getElementById('videoFrame').src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&rel=0&modestbranding=1`;
+            document.getElementById('videoCount').innerText = `${slideNumber} / ${activeVideoCollection.length}`;
         }
 
         function changeVideo(direction) {
-            videoIndex = (videoIndex + direction + cinematicVideos.length) % cinematicVideos.length;
+            videoIndex = (videoIndex + direction + activeVideoCollection.length) % activeVideoCollection.length;
             updateVideoSlide();
         }
 
@@ -1177,7 +1315,21 @@
 
         function closeModal() {
             document.getElementById('portfolioModal').classList.remove('active');
+            document.getElementById('videoFrame').src = '';
+            document.body.style.overflow = '';
         }
+
+        function closeModalOnBackdrop(event) {
+            if (event.target === event.currentTarget) {
+                closeModal();
+            }
+        }
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
 
     </script>
 </body>
