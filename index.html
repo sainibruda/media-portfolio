@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonny S. Belda Jr. | Freelance Photographer & Visual Storyteller</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f1115;
+            --bg-card: #181a20;
+            --bg-card-hover: #22252d;
+            --border-color: #2a2e39;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --accent-gold: #d4a373;
+            --accent-gold-hover: #c39262;
+            --accent-teal: #52b788;
+            --font-heading: 'Cinzel', serif, Georgia;
+            --font-body: 'Inter', sans-serif, -apple-system;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 17, 21, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-gold);
+        }
+
+        .cta-btn-nav {
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold) !important;
+            padding: 0.4rem 1.2rem;
+            border-radius: 4px;
+            transition: all 0.3s ease !important;
+        }
+
+        .cta-btn-nav:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark) !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 2rem 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-subtitle {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            line-height: 1.15;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        .hero-desc {
+            max-width: 680px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            border: 1px solid var(--accent-gold);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-gold-hover);
+            border-color: var(--accent-gold-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Section Layout */
+        .section {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Portfolio Section */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            border-color: var(--accent-gold);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .portfolio-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-card:hover .card-img {
+            transform: scale(1.06);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(15, 17, 21, 0.8);
+            backdrop-filter: blur(4px);
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-body {
+            padding: 1.4rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-primary);
+        }
+
+        .card-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.8rem;
+        }
+
+        /* About & Gear Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+            font-size: 0.98rem;
+        }
+
+        .gear-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .gear-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.6rem;
+        }
+
+        .gear-list {
+            list-style: none;
+        }
+
+        .gear-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .gear-name {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .gear-detail {
+            color: var(--text-secondary);
+        }
+
+        /* Services & Pricing */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-4px);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .service-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .service-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Lightbox Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 900px;
+            width: 100%;
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+        }
+
+        .modal-img-container {
+            max-height: 500px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .modal-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-info {
+            padding: 2rem;
+        }
+
+        .modal-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .modal-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-specs {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.2rem; }
+            .about-grid, .modal-body { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Sonny Belda <span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#work">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gear">Equipment</a></li>
+                <li><a href="#contact" class="cta-btn-nav">Hire Me</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-subtitle">Visual Storyteller & Photographer</div>
+        <h1 class="hero-title">Capturing Authentic Human Moments & Coastal Horizons</h1>
+        <p class="hero-desc">
+            Specializing in documentary photography, real estate imagery, atmospheric moving postcards, and high-volume digital color grading. Based in Calabarzon, Philippines.
+        </p>
+        <div class="hero-buttons">
+            <a href="#work" class="btn btn-primary">Explore Projects</a>
+            <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Portfolio Gallery Section -->
+    <section class="section" id="work">
+        <div class="section-header">
+            <div class="section-subtitle">Selected Work</div>
+            <h2 class="section-title">Featured Projects</h2>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterGallery('all')">All Work</button>
+            <button class="filter-btn" onclick="filterGallery('coastal')">Coastal & Maritime</button>
+            <button class="filter-btn" onclick="filterGallery('realestate')">Real Estate & Architecture</button>
+            <button class="filter-btn" onclick="filterGallery('lifestyle')">Lifestyle & Candid</button>
+            <button class="filter-btn" onclick="filterGallery('moving')">#Moving_Postcards</button>
+        </div>
+
+        <!-- Grid Container -->
+        <div class="gallery-grid" id="gallery-grid">
+            
+            <!-- Card 1 -->
+            <div class="portfolio-card" data-category="coastal" onclick="openModal('Coastal Horizon & Guard Post', 'Documentary photography capturing morning maritime operations and reflections on coastal waters in South Luzon.', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80', 'Panasonic Lumix G7 | Cine-D LUT', 'Batangas Coast')">
+                <div class="card-img-wrapper">
+                    <span class="card-badge">Coastal</span>
+                    <img class="card-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Coastal Horizon">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Coastal Horizon & Guard Post</h3>
+                    <p class="card-desc">Authentic maritime landscape study focusing on light reflections and morning coastal calm.</p>
+                    <div class="card-meta">
+                        <span>Batangas, PH</span>
+                        <span>Lumix G7 • Cine-D</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="portfolio-card" data-category="realestate" onclick="openModal('Modern Architectural Space', 'High-detail interior real estate session showcasing clean geometry, soft shadow distribution, and color accuracy.', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80', 'Photoshop & Lightroom Retouched', 'Laguna Residential')">
+                <div class="card-img-wrapper">
+                    <span class="card-badge">Real Estate</span>
+                    <img class="card-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Real Estate Interior">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Modern Architectural Interior</h3>
+                    <p class="card-desc">Precision ambient lighting capture designed for real estate listings and commercial spaces.</p>
+                    <div class="card-meta">
+                        <span>Santa Rosa, Laguna</span>
+                        <span>HDR Bracketed</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="portfolio-card" data-category="lifestyle" onclick="openModal('Community Gathering & Candid', 'Documentary series exploring genuine human connections, street markets, and twilight interaction.', 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1000&q=80', 'Lumix G7 | 25mm F1.7', 'Cavite Night Market')">
+                <div class="card-img-wrapper">
+                    <span class="card-badge">Lifestyle</span>
+                    <img class="card-img" src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80" alt="Candid Community">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Twilight Gathering & Stories</h3>
+                    <p class="card-desc">Unscripted human moments during local evening events, emphasized with warm natural tones.</p>
+                    <div class="card-meta">
+                        <span>Cavite, PH</span>
+                        <span>25mm Prime</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="portfolio-card" data-category="moving" onclick="openModal('#moving_postcards Vol. I', 'A short atmospheric video snippet series capturing quiet nature movements and serene water flows.', 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80', 'DaVinci Resolve | 4K 24fps', 'Highland Lake')">
+                <div class="card-img-wrapper">
+                    <span class="card-badge">Cinematic Video</span>
+                    <img class="card-img" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Moving Postcard Nature">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">#moving_postcards Vol. I</h3>
+                    <p class="card-desc">Atmospheric short-form video clip engineered for digital reels and peaceful visual storytelling.</p>
+                    <div class="card-meta">
+                        <span>Laguna Lakeshore</span>
+                        <span>DaVinci Resolve</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="portfolio-card" data-category="coastal" onclick="openModal('Coastal Seafarer Rhythm', 'Environmental portraiture highlighting maritime workers and shoreline ecology initiatives.', 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=80', 'Lumix G7 | Cine-D', 'Subic Bay')">
+                <div class="card-img-wrapper">
+                    <span class="card-badge">Coastal</span>
+                    <img class="card-img" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Coastal Worker">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Coastal Seafarer Rhythm</h3>
+                    <p class="card-desc">Documentary study on maritime daily routines and environmental balance on shoreline sites.</p>
+                    <div class="card-meta">
+                        <span>Maritime Sector</span>
+                        <span>Cine-D Profile</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="portfolio-card" data-category="realestate" onclick="openModal('Minimalist Facade & Structure', 'Architectural detail documentation highlighting material textures, wooden paneling, and structural shadow lines.', 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80', 'High Batch Retouch', 'Commercial Studio')">
+                <div class="card-img-wrapper">
+                    <span class="card-badge">Real Estate</span>
+                    <img class="card-img" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Architectural Facade">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Minimalist Facade & Structure</h3>
+                    <p class="card-desc">Architectural emphasis on geometric wood finishes and clean spatial distribution.</p>
+                    <div class="card-meta">
+                        <span>Carmona Studio</span>
+                        <span>Photoshop Batch</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About & Gear Section -->
+    <section class="section" id="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="section-subtitle" style="text-align: left;">Storyteller Profile</div>
+                <h3>Sonny S. Belda Jr.</h3>
+                <p>
+                    I am a freelance photographer, video editor, and maritime researcher based in Calabarzon, Philippines. My work bridges technical precision with artistic narrative—focusing on candid human moments, maritime culture, and clean architectural spaces.
+                </p>
+                <p>
+                    With extensive experience in <strong>DaVinci Resolve</strong>, <strong>Adobe Photoshop</strong>, and custom <strong>Cine-D LUT color grading</strong>, I provide high-volume quality control, batch photo retouching, and cinematic short-form video production.
+                </p>
+            </div>
+
+            <div class="gear-box" id="gear">
+                <div class="gear-title">Technical Equipment & Toolstack</div>
+                <ul class="gear-list">
+                    <li class="gear-item">
+                        <span class="gear-name">Primary Camera</span>
+                        <span class="gear-detail">Panasonic Lumix G7 (Cine-D Profile)</span>
+                    </li>
+                    <li class="gear-item">
+                        <span class="gear-name">Support & Rigging</span>
+                        <span class="gear-detail">Triopo K268 Heavy-Duty Stabilizer</span>
+                    </li>
+                    <li class="gear-item">
+                        <span class="gear-name">Color Grading</span>
+                        <span class="gear-detail">Custom Cine-D LUTs & DaVinci Resolve</span>
+                    </li>
+                    <li class="gear-item">
+                        <span class="gear-name">Post-Processing</span>
+                        <span class="gear-detail">Adobe Lightroom & Photoshop CC</span>
+                    </li>
+                    <li class="gear-item">
+                        <span class="gear-name">Video Editing</span>
+                        <span class="gear-detail">DaVinci Resolve Studio / CapCut Pro</span>
+                    </li>
+                    <li class="gear-item">
+                        <span class="gear-name">Specialization</span>
+                        <span class="gear-detail">#moving_postcards & Real Estate Retouch</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="section-header">
+            <div class="section-subtitle">What I Offer</div>
+            <h2 class="section-title">Freelance Services</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📷</div>
+                <div class="service-name">Documentary & Events</div>
+                <div class="service-desc">Authentic on-location photo coverage for community gatherings, coastal activities, and lifestyle projects.</div>
+                <div class="service-price">From ₱3,500 / Session</div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <div class="service-name">Real Estate Photography</div>
+                <div class="service-desc">Interior & exterior architectural capture with professional color correction and distortion fixing.</div>
+                <div class="service-price">From ₱4,500 / Property</div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎬</div>
+                <div class="service-name">Cinematic Short Video</div>
+                <div class="service-desc">Vertical video clips (#moving_postcards), Cine-D color grading, and ready-to-post social media reels.</div>
+                <div class="service-price">From ₱2,500 / Clip</div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <div class="service-name">Batch Editing & Retouching</div>
+                <div class="service-desc">High-volume RAW processing, exposure balancing, sky replacement, and Lightroom color matching.</div>
+                <div class="service-price">From ₱50 / Image</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="section-header">
+            <div class="section-subtitle">Let's Work Together</div>
+            <h2 class="section-title">Book a Session or Project</h2>
+        </div>
+        <div class="contact-container">
+            <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label" for="name">Your Name</label>
+                    <input type="text" id="name" class="form-input" placeholder="e.g. Maria Santos" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" id="email" class="form-input" placeholder="maria@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="service">Service Required</label>
+                    <select id="service" class="form-select">
+                        <option value="realestate">Real Estate & Architectural Shoot</option>
+                        <option value="documentary">Documentary / Community Event</option>
+                        <option value="video">Cinematic Video (#moving_postcards)</option>
+                        <option value="retouching">Batch Editing & Photo Retouching</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="message">Project Details & Preferred Dates</label>
+                    <textarea id="message" class="form-textarea" placeholder="Describe your location, goals, and timing..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
+            </form>
+            <div id="formSuccess" style="display: none; text-align: center; color: var(--accent-teal); margin-top: 1.5rem; font-weight: 600;">
+                ✓ Thank you! Your inquiry has been sent. Sonny will get back to you within 24 hours.
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="modal" id="portfolioModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-img-container">
+                    <img id="modalImg" src="" alt="Modal Project Image">
+                </div>
+                <div class="modal-info">
+                    <h3 class="modal-title" id="modalTitle">Project Title</h3>
+                    <p class="modal-text" id="modalText">Project description goes here...</p>
+                    <div class="modal-specs">
+                        <p><strong>Technical Setup:</strong> <span id="modalSpecs">Specs</span></p>
+                        <p><strong>Location:</strong> <span id="modalLocation">Location</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Sonny S. Belda Jr. All Rights Reserved.</p>
+        <p>Crafted with precision for freelance photography & visual media clients.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function filterGallery(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.portfolio-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openModal(title, text, imgSrc, specs, location) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalText').innerText = text;
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalSpecs').innerText = specs;
+            document.getElementById('modalLocation').innerText = location;
+            document.getElementById('portfolioModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('portfolioModal').classList.remove('active');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('contactForm').reset();
+            document.getElementById('formSuccess').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('formSuccess').style.display = 'none';
+            }, 6000);
+        }
+    </script>
+</body>
+</html>
