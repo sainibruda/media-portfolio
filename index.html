@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonny S. Belda Jr. | Freelance Photographer & Visual Storyteller</title>
+    <title>Sonny S. Belda Jr. | Photo & Video Editor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -265,7 +265,7 @@
             position: relative;
         }
 
-        .card-img {
+        .card-img, .card-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -289,6 +289,7 @@
             border: 1px solid rgba(212, 163, 115, 0.3);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            z-index: 2;
         }
 
         .card-body {
@@ -379,10 +380,10 @@
             color: var(--text-secondary);
         }
 
-        /* Services & Pricing */
+        /* Services Section */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.8rem;
         }
 
@@ -414,13 +415,6 @@
         .service-desc {
             font-size: 0.88rem;
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .service-price {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--accent-gold);
         }
 
         /* Contact Section */
@@ -577,7 +571,7 @@
                 <li><a href="#work">Work</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#gear">Equipment</a></li>
+                <li><a href="#gear">Toolstack</a></li>
                 <li><a href="#contact" class="cta-btn-nav">Hire Me</a></li>
             </ul>
         </div>
@@ -585,10 +579,10 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-subtitle">Visual Storyteller & Photographer</div>
-        <h1 class="hero-title">Capturing Authentic Human Moments & Coastal Horizons</h1>
+        <div class="hero-subtitle">Photo & Video Editor</div>
+        <h1 class="hero-title">Crafting Visuals through Precision Editing & Color</h1>
         <p class="hero-desc">
-            Specializing in documentary photography, real estate imagery, atmospheric moving postcards, and high-volume digital color grading. Based in Calabarzon, Philippines.
+            Specializing in high-volume digital photo retouching, Cine-D color grading, atmospheric video edits, and short-form visual storytelling.
         </p>
         <div class="hero-buttons">
             <a href="#work" class="btn btn-primary">Explore Projects</a>
@@ -599,114 +593,82 @@
     <!-- Portfolio Gallery Section -->
     <section class="section" id="work">
         <div class="section-header">
-            <div class="section-subtitle">Selected Work</div>
-            <h2 class="section-title">Featured Projects</h2>
+            <div class="section-subtitle">Selected Edits</div>
+            <h2 class="section-title">Featured Work</h2>
         </div>
 
         <!-- Category Filters -->
         <div class="filter-container">
-            <button class="filter-btn active" onclick="filterGallery('all')">All Work</button>
-            <button class="filter-btn" onclick="filterGallery('coastal')">Coastal & Maritime</button>
-            <button class="filter-btn" onclick="filterGallery('realestate')">Real Estate & Architecture</button>
-            <button class="filter-btn" onclick="filterGallery('lifestyle')">Lifestyle & Candid</button>
-            <button class="filter-btn" onclick="filterGallery('moving')">#Moving_Postcards</button>
+            <button class="filter-btn active" onclick="filterGallery('all')">All Edits</button>
+            <button class="filter-btn" onclick="filterGallery('video')">Video Editing</button>
+            <button class="filter-btn" onclick="filterGallery('retouching')">Photo Retouching</button>
+            <button class="filter-btn" onclick="filterGallery('moving')">#moving_postcards</button>
         </div>
 
         <!-- Grid Container -->
         <div class="gallery-grid" id="gallery-grid">
             
-            <!-- Card 1 -->
-            <div class="portfolio-card" data-category="coastal" onclick="openModal('Coastal Horizon & Guard Post', 'Documentary photography capturing morning maritime operations and reflections on coastal waters in South Luzon.', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80', 'Panasonic Lumix G7 | Cine-D LUT', 'Batangas Coast')">
+            <!-- Card 1 (Photo Retouching) -->
+            <div class="portfolio-card" data-category="retouching" onclick="openModal('Coastal Color Grading & Tone', 'Color enhancement and atmospheric balance applied to coastal RAW captures using custom LUT profiles.', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80', 'Lightroom / Photoshop CC', 'Digital Editing')">
                 <div class="card-img-wrapper">
-                    <span class="card-badge">Coastal</span>
-                    <img class="card-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Coastal Horizon">
+                    <span class="card-badge">Retouching</span>
+                    <img class="card-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Coastal Horizon Retouch">
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Coastal Horizon & Guard Post</h3>
-                    <p class="card-desc">Authentic maritime landscape study focusing on light reflections and morning coastal calm.</p>
+                    <h3 class="card-title">Coastal Color Grading</h3>
+                    <p class="card-desc">Shadow recovery, highlight control, and warm sea-tone color grading.</p>
                     <div class="card-meta">
-                        <span>Batangas, PH</span>
-                        <span>Lumix G7 • Cine-D</span>
+                        <span>Post-Production</span>
+                        <span>Lightroom CC</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 2 -->
-            <div class="portfolio-card" data-category="realestate" onclick="openModal('Modern Architectural Space', 'High-detail interior real estate session showcasing clean geometry, soft shadow distribution, and color accuracy.', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80', 'Photoshop & Lightroom Retouched', 'Laguna Residential')">
+            <!-- Card 2 (Video Edit Example with HTML5 Video preview) -->
+            <div class="portfolio-card" data-category="video" onclick="openModal('Cinematic Video Assembly', 'Multi-clip video sequence with rhythmic pacing, custom transitions, and sound design.', 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1000&q=80', 'DaVinci Resolve Studio', '4K Video Edit')">
                 <div class="card-img-wrapper">
-                    <span class="card-badge">Real Estate</span>
-                    <img class="card-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Real Estate Interior">
+                    <span class="card-badge">Video Edit</span>
+                    <!-- You can replace image with video element or preview thumbnail -->
+                    <img class="card-img" src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80" alt="Video Project Preview">
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Modern Architectural Interior</h3>
-                    <p class="card-desc">Precision ambient lighting capture designed for real estate listings and commercial spaces.</p>
+                    <h3 class="card-title">Cinematic Sequence Edit</h3>
+                    <p class="card-desc">Frame-accurate cutting, audio normalization, and Cine-D color grade.</p>
                     <div class="card-meta">
-                        <span>Santa Rosa, Laguna</span>
-                        <span>HDR Bracketed</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="portfolio-card" data-category="lifestyle" onclick="openModal('Community Gathering & Candid', 'Documentary series exploring genuine human connections, street markets, and twilight interaction.', 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1000&q=80', 'Lumix G7 | 25mm F1.7', 'Cavite Night Market')">
-                <div class="card-img-wrapper">
-                    <span class="card-badge">Lifestyle</span>
-                    <img class="card-img" src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80" alt="Candid Community">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Twilight Gathering & Stories</h3>
-                    <p class="card-desc">Unscripted human moments during local evening events, emphasized with warm natural tones.</p>
-                    <div class="card-meta">
-                        <span>Cavite, PH</span>
-                        <span>25mm Prime</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="portfolio-card" data-category="moving" onclick="openModal('#moving_postcards Vol. I', 'A short atmospheric video snippet series capturing quiet nature movements and serene water flows.', 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80', 'DaVinci Resolve | 4K 24fps', 'Highland Lake')">
-                <div class="card-img-wrapper">
-                    <span class="card-badge">Cinematic Video</span>
-                    <img class="card-img" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Moving Postcard Nature">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">#moving_postcards Vol. I</h3>
-                    <p class="card-desc">Atmospheric short-form video clip engineered for digital reels and peaceful visual storytelling.</p>
-                    <div class="card-meta">
-                        <span>Laguna Lakeshore</span>
+                        <span>Video Editing</span>
                         <span>DaVinci Resolve</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 5 -->
-            <div class="portfolio-card" data-category="coastal" onclick="openModal('Coastal Seafarer Rhythm', 'Environmental portraiture highlighting maritime workers and shoreline ecology initiatives.', 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=80', 'Lumix G7 | Cine-D', 'Subic Bay')">
+            <!-- Card 3 (#moving_postcards) -->
+            <div class="portfolio-card" data-category="moving" onclick="openModal('#moving_postcards Vol. I', 'A short atmospheric video snippet series engineered for peaceful visual storytelling.', 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80', 'CapCut Pro / DaVinci', 'Short Form')">
                 <div class="card-img-wrapper">
-                    <span class="card-badge">Coastal</span>
-                    <img class="card-img" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Coastal Worker">
+                    <span class="card-badge">Moving Postcard</span>
+                    <img class="card-img" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Moving Postcard Nature">
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Coastal Seafarer Rhythm</h3>
-                    <p class="card-desc">Documentary study on maritime daily routines and environmental balance on shoreline sites.</p>
+                    <h3 class="card-title">#moving_postcards Vol. I</h3>
+                    <p class="card-desc">Atmospheric short-form video clip optimized for vertical social media feeds.</p>
                     <div class="card-meta">
-                        <span>Maritime Sector</span>
-                        <span>Cine-D Profile</span>
+                        <span>Short-Form Video</span>
+                        <span>Cine-D LUT</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 6 -->
-            <div class="portfolio-card" data-category="realestate" onclick="openModal('Minimalist Facade & Structure', 'Architectural detail documentation highlighting material textures, wooden paneling, and structural shadow lines.', 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80', 'High Batch Retouch', 'Commercial Studio')">
+            <!-- Card 4 (Batch Retouching) -->
+            <div class="portfolio-card" data-category="retouching" onclick="openModal('Batch Image Processing', 'Batch exposure correction, chromatic aberration removal, and uniform tone matching for high volume sets.', 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80', 'Photoshop Batch Automation', 'Batch Retouch')">
                 <div class="card-img-wrapper">
-                    <span class="card-badge">Real Estate</span>
-                    <img class="card-img" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Architectural Facade">
+                    <span class="card-badge">Batch Edit</span>
+                    <img class="card-img" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Batch Image Edit">
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Minimalist Facade & Structure</h3>
-                    <p class="card-desc">Architectural emphasis on geometric wood finishes and clean spatial distribution.</p>
+                    <h3 class="card-title">High-Volume Batch Processing</h3>
+                    <p class="card-desc">Standardized color matching and exposure balancing across large photo collections.</p>
                     <div class="card-meta">
-                        <span>Carmona Studio</span>
-                        <span>Photoshop Batch</span>
+                        <span>Post-Processing</span>
+                        <span>Photoshop CC</span>
                     </div>
                 </div>
             </div>
@@ -714,85 +676,61 @@
         </div>
     </section>
 
-    <!-- About & Gear Section -->
+    <!-- About Section -->
     <section class="section" id="about">
         <div class="about-grid">
             <div class="about-text">
-                <div class="section-subtitle" style="text-align: left;">Storyteller Profile</div>
+                <div class="section-subtitle" style="text-align: left;">Editor Profile</div>
                 <h3>Sonny S. Belda Jr.</h3>
                 <p>
-                    I am a freelance photographer, video editor, and maritime researcher based in Calabarzon, Philippines. My work bridges technical precision with artistic narrative—focusing on candid human moments, maritime culture, and clean architectural spaces.
+                    I am a digital photo editor and post-production video specialist based in Calabarzon, Philippines. My focus centers on transforming raw footage and images into polished visual media.
                 </p>
                 <p>
-                    With extensive experience in <strong>DaVinci Resolve</strong>, <strong>Adobe Photoshop</strong>, and custom <strong>Cine-D LUT color grading</strong>, I provide high-volume quality control, batch photo retouching, and cinematic short-form video production.
+                    Leveraging <strong>DaVinci Resolve</strong>, <strong>Adobe Photoshop</strong>, <strong>CapCut</strong>, and custom <strong>Cine-D LUT color profiles</strong>, I offer high-volume batch retouching, video assembly, audio synchronization, and color correction.
                 </p>
             </div>
 
             <div class="gear-box" id="gear">
-                <div class="gear-title">Technical Equipment & Toolstack</div>
+                <div class="gear-title">Software & Post-Production Toolstack</div>
                 <ul class="gear-list">
                     <li class="gear-item">
-                        <span class="gear-name">Primary Camera</span>
-                        <span class="gear-detail">Panasonic Lumix G7 (Cine-D Profile)</span>
+                        <span class="gear-name">Video Editing NLE</span>
+                        <span class="gear-detail">DaVinci Resolve Studio & CapCut Pro</span>
                     </li>
                     <li class="gear-item">
-                        <span class="gear-name">Support & Rigging</span>
-                        <span class="gear-detail">Triopo K268 Heavy-Duty Stabilizer</span>
+                        <span class="gear-name">Photo Retouching</span>
+                        <span class="gear-detail">Adobe Photoshop CC & Lightroom CC</span>
                     </li>
                     <li class="gear-item">
                         <span class="gear-name">Color Grading</span>
-                        <span class="gear-detail">Custom Cine-D LUTs & DaVinci Resolve</span>
-                    </li>
-                    <li class="gear-item">
-                        <span class="gear-name">Post-Processing</span>
-                        <span class="gear-detail">Adobe Lightroom & Photoshop CC</span>
-                    </li>
-                    <li class="gear-item">
-                        <span class="gear-name">Video Editing</span>
-                        <span class="gear-detail">DaVinci Resolve Studio / CapCut Pro</span>
+                        <span class="gear-detail">Custom Cine-D LUTs & Node-Based Grading</span>
                     </li>
                     <li class="gear-item">
                         <span class="gear-name">Specialization</span>
-                        <span class="gear-detail">#moving_postcards & Real Estate Retouch</span>
+                        <span class="gear-detail">#moving_postcards & Batch Photo Retouching</span>
                     </li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services Section (Pricing Removed) -->
     <section class="section" id="services">
         <div class="section-header">
             <div class="section-subtitle">What I Offer</div>
-            <h2 class="section-title">Freelance Services</h2>
+            <h2 class="section-title">Editing & Post-Production Services</h2>
         </div>
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">📷</div>
-                <div class="service-name">Documentary & Events</div>
-                <div class="service-desc">Authentic on-location photo coverage for community gatherings, coastal activities, and lifestyle projects.</div>
-                <div class="service-price">From ₱3,500 / Session</div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🏠</div>
-                <div class="service-name">Real Estate Photography</div>
-                <div class="service-desc">Interior & exterior architectural capture with professional color correction and distortion fixing.</div>
-                <div class="service-price">From ₱4,500 / Property</div>
-            </div>
-
-            <div class="service-card">
                 <div class="service-icon">🎬</div>
-                <div class="service-name">Cinematic Short Video</div>
-                <div class="service-desc">Vertical video clips (#moving_postcards), Cine-D color grading, and ready-to-post social media reels.</div>
-                <div class="service-price">From ₱2,500 / Clip</div>
+                <div class="service-name">Video Editing & Color Grading</div>
+                <div class="service-desc">Complete video post-production including clip assembly, sound design, vertical reels, Cine-D color grading, and #moving_postcards formatting.</div>
             </div>
 
             <div class="service-card">
                 <div class="service-icon">💻</div>
-                <div class="service-name">Batch Editing & Retouching</div>
-                <div class="service-desc">High-volume RAW processing, exposure balancing, sky replacement, and Lightroom color matching.</div>
-                <div class="service-price">From ₱50 / Image</div>
+                <div class="service-name">Batch Photo Editing & Retouching</div>
+                <div class="service-desc">High-volume RAW image processing, exposure correction, color matching, background adjustments, and detailed Photoshop retouching.</div>
             </div>
         </div>
     </section>
@@ -801,7 +739,7 @@
     <section class="section" id="contact">
         <div class="section-header">
             <div class="section-subtitle">Let's Work Together</div>
-            <h2 class="section-title">Book a Session or Project</h2>
+            <h2 class="section-title">Submit a Post-Production Project</h2>
         </div>
         <div class="contact-container">
             <form id="contactForm" onsubmit="handleFormSubmit(event)">
@@ -818,22 +756,21 @@
                 <div class="form-group">
                     <label class="form-label" for="service">Service Required</label>
                     <select id="service" class="form-select">
-                        <option value="realestate">Real Estate & Architectural Shoot</option>
-                        <option value="documentary">Documentary / Community Event</option>
-                        <option value="video">Cinematic Video (#moving_postcards)</option>
-                        <option value="retouching">Batch Editing & Photo Retouching</option>
+                        <option value="video">Video Editing & Color Grading</option>
+                        <option value="moving">Cinematic Short Video (#moving_postcards)</option>
+                        <option value="retouching">Batch Photo Editing & Retouching</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="message">Project Details & Preferred Dates</label>
-                    <textarea id="message" class="form-textarea" placeholder="Describe your location, goals, and timing..." required></textarea>
+                    <label class="form-label" for="message">Project Details & Media Link</label>
+                    <textarea id="message" class="form-textarea" placeholder="Describe your editing project, volume of files, style goals, and provide links to RAW footage or drive folders..." required></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Project Details</button>
             </form>
             <div id="formSuccess" style="display: none; text-align: center; color: var(--accent-teal); margin-top: 1.5rem; font-weight: 600;">
-                ✓ Thank you! Your inquiry has been sent. Sonny will get back to you within 24 hours.
+                ✓ Thank you! Your project details have been sent. Sonny will get back to you within 24 hours.
             </div>
         </div>
     </section>
@@ -843,25 +780,25 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal()">&times;</span>
             <div class="modal-body">
-                <div class="modal-img-container">
+                <div class="modal-img-container" id="modalMediaContainer">
                     <img id="modalImg" src="" alt="Modal Project Image">
                 </div>
                 <div class="modal-info">
                     <h3 class="modal-title" id="modalTitle">Project Title</h3>
                     <p class="modal-text" id="modalText">Project description goes here...</p>
                     <div class="modal-specs">
-                        <p><strong>Technical Setup:</strong> <span id="modalSpecs">Specs</span></p>
-                        <p><strong>Location:</strong> <span id="modalLocation">Location</span></p>
+                        <p><strong>Software & Tools:</strong> <span id="modalSpecs">Specs</span></p>
+                        <p><strong>Category:</strong> <span id="modalLocation">Category</span></p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer>
         <p>© 2026 Sonny S. Belda Jr. All Rights Reserved.</p>
-        <p>Crafted with precision for freelance photography & visual media clients.</p>
+        <p>Crafted for digital post-production & editing solutions.</p>
     </footer>
 
     <!-- JavaScript -->
@@ -881,10 +818,10 @@
             });
         }
 
-        function openModal(title, text, imgSrc, specs, location) {
+        function openModal(title, text, mediaSrc, specs, location) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalText').innerText = text;
-            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalImg').src = mediaSrc;
             document.getElementById('modalSpecs').innerText = specs;
             document.getElementById('modalLocation').innerText = location;
             document.getElementById('portfolioModal').classList.add('active');
